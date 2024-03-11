@@ -1,0 +1,26 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}tbjo-shop order complete detail{% endblock %}
+
+{% block css %}
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+<link rel="stylesheet" href="{% static 'orders/css/order.css' %}" type="text/css" /> 
+{% endblock %}
+
+{% block body_content %}
+<h1>내 주문 내역</h1>
+{% for order in orders %}
+<h2>주문 번호: {{order.pk}} </h2>
+
+<div class="order-list">
+    <img class="order-product-img" src="{{order.product.img.url}}">
+<div class="order-complete">
+    <p>주문 상품: {{order.product.name}}</p>
+    <p>지불 수단:{{order.paymentMethod}}</p>
+    <p>배송 예정지: {{order.destination}}</p>
+</div>
+</div>
+<br>
+{% endfor %}
+{% endblock %}

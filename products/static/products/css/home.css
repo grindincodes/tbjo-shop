@@ -1,0 +1,21 @@
+.container {
+margin-top: 50px;
+}  
+.product-card {
+    margin: 20px;
+    max-width: 70%;
+    border-radius: 15px;
+}
+.product-card img {
+    width: 100%; /* 이미지 너비를 카드의 너비로 설정  */
+    height: 30vh; /* 이미지 높이 view height 3/10 */
+    object-fit: cover; /* 이미지가 카드를 꽉 차게 보이도록 설정 */
+}
+.btn {
+    color: aliceblue;
+    background-color: darkslateblue;
+}
+.product-price {
+    font-size: 18px;
+    font-weight: bold;
+}

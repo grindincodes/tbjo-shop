@@ -1,0 +1,28 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}tbjo-shop home{% endblock %}
+
+{% block css %}
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+<link rel="stylesheet" href="{% static 'products/css/home.css' %}" type="text/css" /> 
+{% endblock %}
+
+{% block body_content %}
+<div class="container">
+    <div class="row">
+        {% for product in products %}
+        <div class="col-sm-6">
+            <div class="card product-card">
+                <img src="{{product.img.url}}" class="card-img-top">
+                <div class="card-body">
+                    <h5 class="card-title">{{product.name}}</h5>
+                    <p class="card-text">{{product.desc}}</p>
+                    <p class="product-price">₩{{product.price}}</p>
+                    <a href="{% url 'product_detail' pk=product.pk %}" class="btn btn-primary">구입</a>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+        <!-- 아래 내용은 테스트용 -->
+{% endblock %}
