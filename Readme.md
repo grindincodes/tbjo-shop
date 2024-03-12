@@ -1,15 +1,28 @@
 # 실행
-
-## 가상황경 생성 및 라이브러리 설치
-1. 가상환경 생성  
-python -m venv myvenv
-2. 가상환경 활성화(<-> deactivate)  
+git clone https://github.com/grindincodes/tbjo-shop
+## 가상황경 생성 및 라이브러리 설치 
+1. 가상환경 패키지 설치(있으면 설치 X)  
+sudo apt install python3.10-venv
+2. 가상환경 생성 (현재 폴더에 생성)  
+python3 -m venv myvenv
+3. 가상환경 활성화(<-> deactivate)  
 source myvenv/bin/activate
-3. 필요 라이브러리 설치  
+4. 필요 라이브러리 설치  
 pip install -r requirements.txt
-4. 환경변수 설정  
+5. 환경변수 설정  
 .env 파일을 프로젝트 루트에 만들고, 필요한 환경변수 설정. = 후에 띄어쓰기 X, 엔터로 각 환경변수 구분!  (장고 시크릿 키 생성 url: https://djecrety.ir/)  
 DJANGO_SECRET=‘Insert your django secret in quotes’
+
+## 가상환경 없이 실행 방법(ubuntu 22.04 LTS 기반, lsb_release -a 로 확인 가능.)
+
+sudo apt update  
+파이썬 버전 확인  3.10.XX 여야 함.
+python3 --version  
+sudo apt install python  
+
+필요 라이브러리 설치 후 경로가 PATH에 없다는 오류가 만약 나온다면,  
+export PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/home/ubuntu/.local/bin  
+를 추가해준다.  
 
 ## DB 마이그레이션
 DB 스키마, 테이블 내용을 migrate 하는 것.
@@ -19,8 +32,17 @@ python manage.py makemigrations
 python manage.py migrate
 
 ## 실행
-python manage.py runserver
-
+** 개발 서버로 실행 **
+python manage.py runserver  
+** 아래 예시와 같이 listen할 포트와 ip 주소를 특정할 수 있다. **  
+python manage.py runserver 0.0.0.0:8080  
+** 백그라운드 실행 **  
+python manage.py runserver 0.0.0.0:8080 &  
+** 백그라운드 실행 및 서버의 표준 오류, 표준 출력을 파일로 출력하는 명령어 **  
+python3 manage.py runserver 0.0.0.0:8080 > server.log 2>&1 &  
+** gunicorn wsgi 서버 사용하여 실행방법 **  
+gunicorn tbjo-shop.wsgi:application  
+gunicorn -b 0.0.0.0:8080 tbjo-shop.wsgi:application  
 ## 관리자 계정 생성 및 관리자 페이지  
 1. 계정 생성
 python manage.py createsuperuser  
