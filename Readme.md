@@ -1,6 +1,15 @@
 # 실행
 git clone https://github.com/grindincodes/tbjo-shop
-## 가상황경 생성 및 라이브러리 설치 
+
+## 공통 기본 환경 구성
+최신 우분투 운영체제에는 파이썬3이 깔려 있음.  
+apt 업데이트  
+sudo apt update  
+파이썬3 버전 확인. 3.10.XX 여야 함.  
+python3 --version  
+
+
+## 설치방법 1. 가상황경 생성 및 라이브러리 설치 
 1. 가상환경 패키지 설치(있으면 설치 X)  
 sudo apt install python3.10-venv
 2. 가상환경 생성 (현재 폴더에 생성)  
@@ -8,21 +17,20 @@ python3 -m venv myvenv
 3. 가상환경 활성화(<-> deactivate)  
 source myvenv/bin/activate
 4. 필요 라이브러리 설치  
-pip install -r requirements.txt
+pip install -r requirements.txt  
+만약 PATH 등록이 없다는 오류가 출력되면 PATH 설정 필요
 5. 환경변수 설정  
 .env 파일을 프로젝트 루트에 만들고, 필요한 환경변수 설정. = 후에 띄어쓰기 X, 엔터로 각 환경변수 구분!  (장고 시크릿 키 생성 url: https://djecrety.ir/)  
 DJANGO_SECRET=‘Insert your django secret in quotes’
 
-## 가상환경 없이 실행 방법(ubuntu 22.04 LTS 기반, lsb_release -a 로 확인 가능.)
-
-sudo apt update  
-파이썬 버전 확인  3.10.XX 여야 함.
-python3 --version  
-sudo apt install python  
-
+## 설치방법 2. 가상환경 없이 설치(ubuntu 22.04 LTS 기반, lsb_release -a 로 확인 가능.)
+pip install -r requirements.txt  
 필요 라이브러리 설치 후 경로가 PATH에 없다는 오류가 만약 나온다면,  
 export PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/home/ubuntu/.local/bin  
 를 추가해준다.  
+앞서 언급한 환경변수 설정하기.  
+
+** 가상환경 기반일 시 아래 내용들은 반드시 가상환경 활성화 후 실행 **  
 
 ## DB 마이그레이션
 DB 스키마, 테이블 내용을 migrate 하는 것.
